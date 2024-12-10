@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class ReleaseSpring : MonoBehaviour
 {
-    public Rigidbody2D ballRigidbody;
-    public FixedJoint2D fixedJoint;
-    public float springForce = 20f;  // Increase for higher jump
-    public KeyCode activationKey = KeyCode.Space;
+    [Header("References")]
+    [SerializeField] private Rigidbody2D ballRigidbody;  // Ball to launch
+    [SerializeField] private FixedJoint2D fixedJoint;   // Joint connecting the ball
 
-    void Update()
+    [Header("Settings")]
+    [SerializeField] private float springForce = 20f;   // Adjustable spring force
+    [SerializeField] private KeyCode activationKey = KeyCode.Space;  // Key for activation
+
+    private void Update()
     {
         if (Input.GetKeyDown(activationKey))
         {
@@ -20,7 +23,13 @@ public class ReleaseSpring : MonoBehaviour
         if (fixedJoint != null)
         {
             Destroy(fixedJoint);  // Release the ball from the spring
-            ballRigidbody.AddForce(Vector2.up * springForce, ForceMode2D.Impulse);  // Apply upward force
+            ApplySpringForce();
         }
+    }
+
+    private void ApplySpringForce()
+    {
+        Vector2 launchDirection = Vector2.up;  // Defined direction for clarity
+        ballRigidbody.AddForce(launchDirection * springForce, ForceMode2D.Impulse);  // Launch the ball
     }
 }
