@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class SpringActivator : MonoBehaviour
 {
-    public SpringJoint2D springJoint;    // Spring Joint on the base
-    public Rigidbody2D ball;            // Ball to be launched
-    public float springForce = 20f;     // Adjust the spring force
+    [Header("References")]
+    [SerializeField] private SpringJoint2D springJoint;  // Spring Joint on the base
+    [SerializeField] private Rigidbody2D ball;          // Ball to be launched
+
+    [Header("Spring Settings")]
+    [SerializeField] private float springForce = 20f;   // Adjustable spring force
+    [SerializeField] private Vector2 forceDirection = Vector2.right;  // Force direction
+
+    [Header("Timing Settings")]
+    [SerializeField] private float springResetDelay = 0.5f;  // Delay before resetting the spring
+    [SerializeField] private float resetDistance = 1f;  // Distance to reset after launch
+
+    [Header("Input Settings")]
+    [SerializeField] private KeyCode activationKey = KeyCode.Space;  // Key for activating the spring
 
     private bool isActivated = false;
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isActivated)
+        if (Input.GetKeyDown(activationKey) && !isActivated)
         {
             ActivateSpring();
         }
@@ -20,16 +31,18 @@ public class SpringActivator : MonoBehaviour
     {
         isActivated = true;
 
-        // Apply force horizontally to the ball
-        ball.AddForce(Vector2.right * springForce, ForceMode2D.Impulse);
+        // Apply force to the ball
+        ball.AddForce(forceDirection * springForce, ForceMode2D.Impulse);
+        Debug.Log("Spring activated!");
 
-        // Simulate release after a short delay
-        Invoke(nameof(ResetSpring), 0.5f);
+        // Reset spring after a delay
+        Invoke(nameof(ResetSpring), springResetDelay);
     }
 
     private void ResetSpring()
     {
-        springJoint.distance = 1f;  // Reset distance (if applicable)
+        springJoint.distance = resetDistance;  // Reset the spring distance
         isActivated = false;
+        Debug.Log("Spring reset!");
     }
 }
