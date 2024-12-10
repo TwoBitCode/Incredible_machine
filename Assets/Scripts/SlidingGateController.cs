@@ -9,10 +9,10 @@ public class SlidingGateController : MonoBehaviour
         if (collision.CompareTag("Ball")) // Ensure the ball is tagged correctly
         {
             Debug.Log("Switch Activated!");
-    
+
             JointMotor2D motor = new JointMotor2D
             {
-                motorSpeed = -5f,  
+                motorSpeed = -5f,
                 maxMotorTorque = 1000f
             };
             gateJoint.motor = motor;
