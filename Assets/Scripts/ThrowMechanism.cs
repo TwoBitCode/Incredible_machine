@@ -6,11 +6,4 @@ public class ThrowMechanism : MonoBehaviour
     public float torqueForce = 500f; // Amount of rotational force
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) // Detect Space key
-        {
-            arm.AddTorque(-torqueForce); // Apply torque to rotate the arm
-        }
-    }
 }
