@@ -1,6 +1,9 @@
 # **🎮 The Incredible Machine - Unity Game Project**  
+![Screenshot 2024-12-11 002656](https://github.com/user-attachments/assets/54d4d43a-f8cc-4264-a953-e499f619d213)
+
 
 ---
+
 
 ## **📖 Overview**  
 Welcome to **The Incredible Machine**, a physics-based puzzle game built in Unity. Solve intricate puzzles using objects like balls, ropes, magnets, and mechanical levers. Each level challenges your creativity and problem-solving skills.  
@@ -40,6 +43,7 @@ private void OnCollisionEnter2D(Collision2D collision)
     }
 }
 ```
+![Screenshot 2024-12-11 002656](https://github.com/user-attachments/assets/dfc7b253-89fc-43c7-9547-718edd5c125f)
 
 ---
 
@@ -89,7 +93,7 @@ private void OnTriggerEnter2D(Collider2D collision)
     }
 }
 ```
-
+![Screenshot 2024-12-11 003120](https://github.com/user-attachments/assets/95c36c59-31a3-4d4a-af51-763c34d6dc4e)
 ---
 
 ### **🚪 6. Environmental Triggers**  
