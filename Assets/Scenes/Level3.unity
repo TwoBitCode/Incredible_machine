@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaa27fd20db2e045949e0cfeab8eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 30
+  levelTime: 60
   timerText: {fileID: 2106910780}
 --- !u!4 &559793723
 Transform:
@@ -1851,7 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionsText: {fileID: 906604349}
   textBackground: {fileID: 1768989588}
-  displayDuration: 5
+  displayDuration: 25
   fadeDuration: 2
 --- !u!1 &598104614
 GameObject:

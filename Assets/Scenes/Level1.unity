@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionsText: {fileID: 979810526}
   textBackground: {fileID: 1727960917}
-  displayDuration: 3
+  displayDuration: 10
   fadeDuration: 2
 --- !u!1 &1246271957
 GameObject:
@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3150943, b: 0.5662448, a: 0.5921569}
+  m_Color: {r: 1, g: 0.3150943, b: 0.5662448, a: 0.8352941}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

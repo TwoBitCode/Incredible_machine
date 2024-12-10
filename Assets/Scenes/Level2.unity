@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaa27fd20db2e045949e0cfeab8eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 30
+  levelTime: 50
   timerText: {fileID: 1361076641}
 --- !u!4 &1030374567
 Transform:
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionsText: {fileID: 1949688048}
   textBackground: {fileID: 1839330030}
-  displayDuration: 3
+  displayDuration: 20
   fadeDuration: 2
 --- !u!1 &1098102694
 GameObject:
@@ -2385,8 +2385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.715515, y: -16.934998}
-  m_SizeDelta: {x: -653.6509, y: -823.38}
+  m_AnchoredPosition: {x: 16, y: 244}
+  m_SizeDelta: {x: -593.8318, y: -742.0264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839330032
 MonoBehaviour:
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87169814, g: 0.011512949, b: 0.5240391, a: 0.392}
+  m_Color: {r: 1, g: 0, b: 0.5977011, a: 0.7607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2730,7 +2730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.9840155, y: -1.0960026}
+  m_AnchoredPosition: {x: -0.0000066757, y: 49}
   m_SizeDelta: {x: 887.92, y: 195.4577}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949688048
@@ -2754,8 +2754,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Adjust the platform holding the stone to the correct angle. When you press
-    the switch, the stone will fall at the right angle, causing the ball to roll
-    onto the ramp, which will push the star into the correct position
+    the Wind Switch, the wind will push the stone, causing it to fall. The falling
+    stone will push the ball onto the ramp. The Ramp Switch, activated by the ball,
+    will move the ramp holding the star into the correct position
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2934,7 +2935,6 @@ GameObject:
   - component: {fileID: 1962579752}
   - component: {fileID: 1962579754}
   - component: {fileID: 1962579753}
-  - component: {fileID: 1962579755}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -3113,18 +3113,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1962579755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962579749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142e7f2c167ff7944892e4d180531e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2104606862
 GameObject:
   m_ObjectHideFlags: 0
