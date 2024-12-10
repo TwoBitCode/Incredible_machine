@@ -32,8 +32,6 @@ public class StickToMagnet : MonoBehaviour
             // Clear velocities
             stuckBall.linearVelocity = Vector2.zero;
             stuckBall.angularVelocity = 0f;
-
-            // Optional: Slightly move the ball away from the magnet to prevent re-triggering
             stuckBall.position += Vector2.down * 0.1f;
 
             stuckBall = null; // Clear reference
