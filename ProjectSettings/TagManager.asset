@@ -9,6 +9,8 @@ TagManager:
   - Knife
   - TriggerDomino
   - MagnetBall
+  - SwitchActivator
+  - Step
   layers:
   - Default
   - TransparentFX
