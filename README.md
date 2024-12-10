@@ -131,7 +131,6 @@ private void OnTriggerEnter2D(Collider2D collision)
      - `Domino`  
      - `TriggerDomino`  
 
-
 ---
 
 ## **🎮 How to Play**  
@@ -139,6 +138,13 @@ private void OnTriggerEnter2D(Collider2D collision)
 - **🖱️ Mouse Clicks:** Drag objects like balls, levers, and platforms.  
 - **🔴 `Space` Key:** Activate throwing mechanisms, spring launchers, and more.  
 - **✅ Complete Levels:** Solve puzzles by creating chain reactions, pressing switches, and using physics-based interactions.  
+
+---
+
+---
+
+## **🌐 Play the Game on Itch.io!**  
+[🎮 **Play The Incredible Machine on Itch.io**](https://twobitcode.itch.io/incredible-machine)  
 
 ---
 
