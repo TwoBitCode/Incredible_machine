@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      light-switch-character-is-jumping-gesture_152558-66058-removebg-preview_0: -1773373569624805898
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
