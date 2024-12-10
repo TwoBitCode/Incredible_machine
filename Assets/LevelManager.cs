@@ -1,35 +1,36 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public float levelTime = 30f;   // זמן מוקצב לשלב
-    public Text timerText;          // תצוגת טיימר על המסך
-
+    public float levelTime = 30f;                // Time allocated per level
+    public TextMeshProUGUI timerText;            // Timer display
     private float remainingTime;
+    private bool isLevelCompleted = false;      // Prevents double triggers
 
     private void Start()
     {
-        remainingTime = levelTime;  // אתחול הזמן
+        remainingTime = levelTime;               // Initialize timer
     }
 
     private void Update()
     {
-        // עדכון זמן השלב
-        if (remainingTime > 0)
+        if (!isLevelCompleted)
         {
-            remainingTime -= Time.deltaTime;
-            UpdateTimerUI();
-        }
-        else
-        {
-            Debug.Log("Time's up! Restarting level...");
-            ReloadCurrentLevel();  // טען מחדש אם הזמן נגמר
+            if (remainingTime > 0)
+            {
+                remainingTime -= Time.deltaTime;
+                UpdateTimerUI();
+            }
+            else
+            {
+                Debug.Log("Time's up! Restarting level...");
+                ReloadCurrentLevel();  // If time runs out
+            }
         }
     }
 
-    // טעינת השלב הבא
     public void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -37,22 +38,30 @@ public class LevelManager : MonoBehaviour
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex);  // Load the next level
         }
         else
         {
             Debug.Log("All levels completed!");
+            EndGame();  // If it's the last level
         }
     }
 
-    // טעינת השלב הנוכחי מחדש
     public void ReloadCurrentLevel()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        if (!isLevelCompleted)
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex);  // Reload current level
+        }
     }
 
-    // עדכון ממשק המשתמש של הטיימר
+    private void EndGame()
+    {
+        Debug.Log("Game Completed! Exiting...");
+        Application.Quit();  // Works in builds only
+    }
+
     private void UpdateTimerUI()
     {
         if (timerText != null)

@@ -3,20 +3,34 @@ using TMPro;
 
 public class MagneticTarget : MonoBehaviour
 {
-    public GameObject hitEffect; // Particle effect
-    public TextMeshProUGUI levelCompleteText; // UI Text
+    public GameObject hitEffect;          // Particle effect
+    public TextMeshProUGUI gameCompleteText;  // "Game Complete" text
+    public LevelManager levelManager;     // Reference to LevelManager
+    public float delayBeforeEnd = 2f;     // Delay before ending the game
+
+    private bool isGameCompleted = false;  // Prevent multiple triggers
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MagnetBall")) // Check for MagneticBall
+        if (collision.CompareTag("MagnetBall") && !isGameCompleted)
         {
-            Debug.Log("Magnetic Ball Reached the Target!");
+            Debug.Log("Magnet Ball Hit the Final Target!");
+            isGameCompleted = true;
 
-            // Activate the particle effect
+            // Trigger the particle effect
             Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-            // Display Level Complete UI
-            levelCompleteText.gameObject.SetActive(true);
+            // Show "Game Complete!" text
+            gameCompleteText.gameObject.SetActive(true);
+
+            // End the game after a delay
+            Invoke(nameof(EndGame), delayBeforeEnd);
         }
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("Game Completed! Exiting...");
+        Application.Quit();  // Works only in builds
     }
 }
