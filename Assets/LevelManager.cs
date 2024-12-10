@@ -4,30 +4,39 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public float levelTime = 30f;                // Time allocated per level
-    public TextMeshProUGUI timerText;            // Timer display
+    public float levelTime = 30f;              // Total time for the level
+    public TextMeshProUGUI timerText;          // Timer display text
+
     private float remainingTime;
-    private bool isLevelCompleted = false;      // Prevents double triggers
+    private bool isLevelCompleted = false;      // Prevents timer from running after completion
 
     private void Start()
     {
-        remainingTime = levelTime;               // Initialize timer
+        remainingTime = levelTime;            // Initialize timer
+        UpdateTimerUI();                      // Show initial time
     }
 
     private void Update()
     {
+        if (!isLevelCompleted && remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+            UpdateTimerUI();
+        }
+        else if (!isLevelCompleted && remainingTime <= 0)
+        {
+            Debug.Log("Time's up! Restarting level...");
+            ReloadCurrentLevel();  // Restart if time runs out
+        }
+    }
+
+    // **ADD THIS METHOD** to stop the timer when the level is completed
+    public void CompleteLevel()
+    {
         if (!isLevelCompleted)
         {
-            if (remainingTime > 0)
-            {
-                remainingTime -= Time.deltaTime;
-                UpdateTimerUI();
-            }
-            else
-            {
-                Debug.Log("Time's up! Restarting level...");
-                ReloadCurrentLevel();  // If time runs out
-            }
+            Debug.Log("Level Completed!");
+            isLevelCompleted = true;  // Stop the timer
         }
     }
 

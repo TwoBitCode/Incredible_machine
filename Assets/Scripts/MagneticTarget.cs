@@ -3,12 +3,13 @@ using TMPro;
 
 public class MagneticTarget : MonoBehaviour
 {
-    public GameObject hitEffect;          // Particle effect
-    public TextMeshProUGUI gameCompleteText;  // "Game Complete" text
-    public LevelManager levelManager;     // Reference to LevelManager
-    public float delayBeforeEnd = 2f;     // Delay before ending the game
+    public GameObject hitEffect;              // Particle effect
+    public GameObject gameCompletePanel;      // Game complete screen
+    public TextMeshProUGUI gameCompleteText;  // Completion message
+    public LevelManager levelManager;         // Reference to the LevelManager
+    public float delayBeforeMessage = 2f;     // Delay before showing the message
 
-    private bool isGameCompleted = false;  // Prevent multiple triggers
+    private bool isGameCompleted = false;     // Prevent multiple triggers
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,20 +18,21 @@ public class MagneticTarget : MonoBehaviour
             Debug.Log("Magnet Ball Hit the Final Target!");
             isGameCompleted = true;
 
+            // Stop the timer in LevelManager
+            levelManager.CompleteLevel();
+
             // Trigger the particle effect
             Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-            // Show "Game Complete!" text
-            gameCompleteText.gameObject.SetActive(true);
-
-            // End the game after a delay
-            Invoke(nameof(EndGame), delayBeforeEnd);
+            // Display "Game Complete!" message after delay
+            Invoke(nameof(ShowEndScreen), delayBeforeMessage);
         }
     }
 
-    private void EndGame()
+    private void ShowEndScreen()
     {
-        Debug.Log("Game Completed! Exiting...");
-        Application.Quit();  // Works only in builds
+        Debug.Log("Congratulations! You Completed the Game!");
+        gameCompletePanel.SetActive(true);
+        gameCompleteText.text = "Congratulations! You Completed the Game!";
     }
 }
