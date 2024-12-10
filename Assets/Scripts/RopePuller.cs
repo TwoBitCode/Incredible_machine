@@ -2,16 +2,21 @@ using UnityEngine;
 
 public class SidewaysDrag : MonoBehaviour
 {
-    public Rigidbody2D weight; // The weight to be dragged
-    public float forceAmount = 1000f; // The amount of force to apply to the weight
-    public float minX = -5f; // Minimum X position for the weight
-    public float maxX = 5f; // Maximum X position for the weight
+    [Header("References")]
+    [SerializeField] private Rigidbody2D weight;  // The draggable weight
 
-    private bool isActivated = false; // Tracks if the weight has been activated
+    [Header("Force Settings")]
+    [SerializeField] private float forceAmount = 1000f;  // Adjustable force amount
+    [SerializeField] private Vector2 forceDirection = Vector2.right;  // Direction of the force
 
-    void Update()
+    [Header("Clamping Settings")]
+    [SerializeField] private float minX = -5f;  // Minimum X position
+    [SerializeField] private float maxX = 5f;   // Maximum X position
+
+    private bool isActivated = false;  // Prevents multiple activations
+
+    private void Update()
     {
-        // Apply force when the weight is clicked
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -21,19 +26,24 @@ public class SidewaysDrag : MonoBehaviour
             if (hitCollider != null && hitCollider.gameObject == weight.gameObject && !isActivated)
             {
                 ApplyForceToWeight();
-                isActivated = true; // Prevent multiple activations
+                isActivated = true;  // Prevent multiple activations
             }
         }
 
         // Clamp the X position of the weight
-        Vector2 clampedPosition = weight.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
-        weight.position = clampedPosition;
+        ClampWeightPosition();
     }
 
     private void ApplyForceToWeight()
     {
-        weight.AddForce(Vector2.right * forceAmount, ForceMode2D.Impulse); // Apply force to the right
+        weight.AddForce(forceDirection * forceAmount, ForceMode2D.Impulse);  // Apply force
         Debug.Log("Weight hit with force!");
+    }
+
+    private void ClampWeightPosition()
+    {
+        Vector2 clampedPosition = weight.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);  // Keep within range
+        weight.position = clampedPosition;
     }
 }
